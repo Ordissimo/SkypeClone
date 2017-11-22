@@ -34,7 +34,7 @@ const ContactHandler = require('./lib/handlers/contact.js');
 
 const userHandler = new UserHandler(User);
 const friendHandler = new FriendHandler(User);
-const messageHandler = new MessageHandler(Message);
+const messageHandler = new MessageHandler(Message, Chat);
 const profileHandler = new ProfileHandler(User);
 const contactHandler = new ContactHandler(User);
 
@@ -45,7 +45,7 @@ mongoose.connection.openUri(db);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.post('/message/get_history', messageHandler.massegeHistory.bind(messageHandler));
+app.post('/message/get_history', messageHandler.messageHistory.bind(messageHandler));
 
 app.get('/user/get_friends/:id', userHandler.get.bind(userHandler));
 app.post('/user/register', userHandler.register.bind(userHandler));
