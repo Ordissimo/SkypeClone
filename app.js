@@ -8,6 +8,7 @@ const passport = require('passport');
 const SerialAuthenticator = require('./lib/auth/index');
 const Message = require('./lib/models/message.model');
 const User = require('./lib/models/user.model');
+const Chat = require('./lib/models/chat.model');
 
 const db = 'mongodb://localhost:27017/skypeClone';
 const authStrategies = {
@@ -29,11 +30,13 @@ const UserHandler = require('./lib/handlers/user.js');
 const FriendHandler = require('./lib/handlers/friend.js');
 const MessageHandler = require('./lib/handlers/message.js');
 const ProfileHandler = require('./lib/handlers/profile.js');
+const ContactHandler = require('./lib/handlers/contact.js');
 
 const userHandler = new UserHandler(User);
 const friendHandler = new FriendHandler(User);
 const messageHandler = new MessageHandler(Message);
 const profileHandler = new ProfileHandler(User);
+const contactHandler = new ContactHandler(User);
 
 const port = process.env.PORT || 8080;
 mongoose.Promise = global.Promise;
