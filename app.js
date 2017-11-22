@@ -42,19 +42,20 @@ mongoose.connection.openUri(db);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.post('/message/send', messageHandler.send.bind(messageHandler));
-app.get('/message/get/:id', messageHandler.get.bind(messageHandler));
+app.post('/message/get_history', messageHandler.massegeHistory.bind(messageHandler));
 
 app.get('/user/get_friends/:id', userHandler.get.bind(userHandler));
 app.post('/user/register', userHandler.register.bind(userHandler));
 
 app.get('/user/profile/:id', profileHandler.getProfile.bind(profileHandler));
-app.post('/user/profile_edit/:id', profileHandler.editProfile.bind(profileHandler)); 
+app.post('/user/profile_edit/:id', profileHandler.editProfile.bind(profileHandler));
 
 app.get('/friend/add/:id', friendHandler.add.bind(friendHandler));
 app.get('/friend/accept/:id', friendHandler.accept.bind(friendHandler))
 app.get('/friend/decline/:id', friendHandler.decline.bind(friendHandler))
 app.get('/friend/remove/:id', friendHandler.remove.bind(friendHandler));
+
+app.get('/search_contact/:search_keyword', contactHandler.searchContact.bind(contactHandler));
 
 app.get('/login/local', passport.authenticate('local'), (req,res) => { res.send('ok') });
 app.listen(port, function() {
